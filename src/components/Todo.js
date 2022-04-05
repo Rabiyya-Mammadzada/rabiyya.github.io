@@ -1,12 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faTrash, faCheck, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 
 const Todo = ({ todo, todos, setTodos, title }) => {
 
     const [edit, setEdit] = useState(false)
     const [editedItem, setEditeditem] = useState("")
+    const input = useRef()
+
+   console.log({input})
+    useEffect(() => {
+        if (edit===true) {
+            input.current.focus()
+        }
+    }, [edit]);
 
     const completeHandler = () => {
         setTodos(todos.map(item => {
@@ -27,7 +35,8 @@ const Todo = ({ todo, todos, setTodos, title }) => {
 
 
     const editInputHandler = () => {
-        console.log(edit)
+
+
         setEdit(true)
     }
     const saveInputHandler = () => {
@@ -49,7 +58,7 @@ const Todo = ({ todo, todos, setTodos, title }) => {
     return (
         <div className={`todo ${todo.completed ? "completed" : " "}`}  >
             <li className='todo-item' >
-                {edit ? <input type="text" onChange={editedTodo} /> : title}
+                {edit ? <input type="text" onChange={editedTodo} className="edit-input" ref={input} value={title} /> : title}
 
 
             </li>

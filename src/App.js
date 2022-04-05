@@ -28,7 +28,10 @@ const App = () => {
   const completedHandler = () => {
     switch (status) {
       case 'Completed':
-        setCompleted(todos.filter((todo) => todo.completed === true));
+        setCompleted(
+          todos.filter((todo) =>  todo.completed === true)
+          
+          );
         break;
       case 'Uncompleted':
         setCompleted(todos.filter((todo) => todo.completed === false));
