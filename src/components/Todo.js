@@ -1,13 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faTrash, faCheck, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { useState, useRef, useEffect, useContext } from 'react'
-import { TodoProvider, TodoContext } from './Context'
+import { TodoContext } from './Context'
 
 
 
 const Todo = ({ todo,  title }) => {
 
     
+    const {todos, setTodos, setComplete, setRemove} = useContext(TodoContext)
     const [edit, setEdit] = useState(false)
     const input = useRef()
 
@@ -28,9 +29,9 @@ const Todo = ({ todo,  title }) => {
             return item
         }))
     }
-
+console.log(todo.id)
     const removeHandler = () => {
-        setTodos(todos.filter((el) => (el.id !== todo.id)))
+        setRemove(todo.id)
     }
 
     const editInputHandler = () => {
@@ -52,7 +53,6 @@ const Todo = ({ todo,  title }) => {
         }))
     }
     
-    const [todos, setTodos] = useContext(TodoContext)
 
     return (
         <div className={`todo ${todo.completed ? "completed" : " "}`}  >
