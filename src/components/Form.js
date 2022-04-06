@@ -1,10 +1,13 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { TodoProvider, TodoContext } from './Context'
 
-const Form = ({ setInputtext, setTodos, inputText, todos, setStatus }) => {
+const Form = ({ setStatus }) => {
 
+
+    const [inputText, setInputtext] = useState("")
 
     const inputHandler = (e) => {
         setInputtext(e.target.value)
@@ -12,13 +15,15 @@ const Form = ({ setInputtext, setTodos, inputText, todos, setStatus }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        setTodos([...todos, { title: inputText, completed: false, id: Math.random() }])
+        setTodos([...todos, { title: inputText, completed: false, id: Math.random()}])
         setInputtext("")
     }
 
     const statusHandler = (e) => {
         setStatus(e.target.value)
     }
+
+    const [todos, setTodos] = useContext(TodoContext)
 
     return (
         <div>

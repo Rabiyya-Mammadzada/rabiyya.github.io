@@ -1,7 +1,7 @@
 
 import Todo from './Todo'
 
-const TodoList = ({ todos, setTodos, completed }) => {
+const TodoList = ({ completed }) => {
 
 
 
@@ -9,12 +9,10 @@ const TodoList = ({ todos, setTodos, completed }) => {
         <div className="todo-container">
             <ul className='todo-list'>
                 {completed.map((todo) => (
-                    <Todo 
-                    todos={todos} 
-                    key={todo.id} 
-                    title={todo.title} 
-                    setTodos={setTodos} 
-                    todo={todo} />
+                    <Todo
+                        key={todo.id}
+                        title={todo.title}
+                        todo={todo} />
                 ))}
             </ul>
         </div>

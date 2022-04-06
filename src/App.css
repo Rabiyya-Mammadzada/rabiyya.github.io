@@ -63,31 +63,34 @@ form button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 100%;
 }
 
 .todo-list {
-  min-width: 30%;
+  min-width: 100%;
   list-style: none;
 }
 
 .todo {
   margin: 0.5rem;
-  
   color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all 1s ease;
   border-radius: 25px;
+  max-width: 100%;
 }
 .filter-todo {
   padding: 0px 10px;
 }
 .todo li {
-width: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   margin-right: auto;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .trash-btn,
@@ -189,4 +192,5 @@ select {
   outline: none;
   border: none;
   width: 100%;
+  font-size: 20px;
 }
