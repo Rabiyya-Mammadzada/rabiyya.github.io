@@ -1,25 +1,20 @@
+import { useContext } from "react";
+import { TodoContext } from "./Context";
+import Todo from "./Todo";
 
-import { useContext } from 'react';
-import { TodoContext } from './Context';
-import Todo from './Todo'
+const TodoList = ({completed,todos,setTodos}) => {
+//   const { completed, todos } = useContext(TodoContext);
+  
 
-const TodoList = () => {
-
-    const {completed, todos} = useContext(TodoContext)
-console.log(todos)
-
-    return (
-        <div className="todo-container">
-            <ul className='todo-list'>
-                {todos.map((todo) => (
-                    <Todo
-                        key={todo.id}
-                        title={todo.title}
-                        todo={todo} />
-                ))}
-            </ul>
-        </div>
-    );
-}
+  return (
+    <div className="todo-container">
+      <ul className="todo-list">
+        {completed.map((todo) => (
+          <Todo key={todo.id} title={todo.title} todo={todo}todos={todos} setTodos={setTodos} />
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default TodoList;
