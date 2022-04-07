@@ -8,9 +8,11 @@ import {
 import { useState, useRef, useEffect, useContext } from "react";
 import { TodoContext } from "./Context";
 
-const Todo = ({ todos, setTodos, todo, title, completed }) => {
+const Todo = ({ todo, title }) => {
+    const [todos, setTodos] = useContext(TodoContext)
     const [edit, setEdit] = useState(false);
     const input = useRef();
+
 
     useEffect(() => {
         if (edit === true) {
@@ -47,6 +49,7 @@ const Todo = ({ todos, setTodos, todo, title, completed }) => {
 
     const saveInputHandler = () => {
         setEdit(false);
+        alert("Saved")
     };
 
     const editedTodo = (e) => {
