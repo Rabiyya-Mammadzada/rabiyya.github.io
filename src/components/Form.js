@@ -3,9 +3,11 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState, useContext } from "react";
 import { TodoContext } from "./Context";
 
-const Form = ({ setFilter }) => {
+const Form = ({ setFiltered }) => {
     const [inputText, setInputtext] = useState("");
-    const [ todos, setTodos ] = useContext(TodoContext);
+    // const [ todos, setTodos ] = useContext(TodoContext);
+
+    const { setTodos} = useContext(TodoContext)
 
     const inputHandler = (e) => {
         setInputtext(e.target.value);
@@ -13,15 +15,17 @@ const Form = ({ setFilter }) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        setTodos([
-            ...todos,
-            { title: inputText, completed: false, id: Math.random() },
-        ]);
+        // setTodos([
+        //     ...todos,
+        //     { title: inputText, completed: false, id: Math.random() },
+        // ]);
+        setTodos(inputText)
         setInputtext("");
     };
 
     const statusHandler = (e) => {
-        setFilter(e.target.value);
+        console.log("status", e.target.value)
+        setFiltered(e.target.value);
     };
 
     return (

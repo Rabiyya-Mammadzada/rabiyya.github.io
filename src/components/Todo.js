@@ -9,7 +9,8 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { TodoContext } from "./Context";
 
 const Todo = ({ todo, title }) => {
-    const [todos, setTodos] = useContext(TodoContext)
+    // const [todos, setTodos] = useContext(TodoContext)
+    const { todos, setTodos, setCompleteToggle, setRemoveItem, setEditedItem } = useContext(TodoContext)
     const [edit, setEdit] = useState(false);
     const input = useRef();
 
@@ -24,23 +25,26 @@ const Todo = ({ todo, title }) => {
         if (edit) {
             alert("Please save it")
         } else {
-            setTodos(
-                todos.map((item) => {
-                    if (item.id === todo.id) {
-                        return {
-                            ...item,
-                            completed: !item.completed,
-                        };
-                    }
-                    return item;
-                })
-            );
+            // setTodos(
+            //     todos.map((item) => {
+            //         if (item.id === todo.id) {
+            //             return {
+            //                 ...item,
+            //                 completed: !item.completed,
+            //             };
+            //         }
+            //         return item;
+            //     })
+            // );
+
+            setCompleteToggle(todo.id)
         }
 
     };
 
     const removeHandler = () => {
-        setTodos(todos.filter((el) => el.id !== todo.id));
+        // setTodos(todos.filter((el) => el.id !== todo.id));
+        setRemoveItem(todo.id)
     };
 
     const editInputHandler = () => {
@@ -53,17 +57,19 @@ const Todo = ({ todo, title }) => {
     };
 
     const editedTodo = (e) => {
-        setTodos(
-            todos.map((item) => {
-                if (item.id === todo.id) {
-                    return {
-                        ...item,
-                        title: e.target.value,
-                    };
-                }
-                return item;
-            })
-        );
+        // setTodos(
+        //     todos.map((item) => {
+        //         if (item.id === todo.id) {
+        //             return {
+        //                 ...item,
+        //                 title: e.target.value,
+        //             };
+        //         }
+        //         return item;
+        //     })
+        // );
+
+        setEditedItem(e.target.value, todo.id)
     };
 
     return (

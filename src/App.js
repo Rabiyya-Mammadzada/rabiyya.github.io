@@ -6,9 +6,9 @@ import { TodoContext } from "./components/Context";
 
 const App = () => {
   // const [todos, setTodos] = useState([])
-  const [filter, setFilter] = useState("all");
+  const [filtered, setFiltered] = useState("All");
   const [completed, setCompleted] = useState([]);
-  const [todos, setTodos] = useContext(TodoContext);
+  const { todos, setTodos } = useContext(TodoContext);
 
   useEffect(() => {
     // getFromLocal()
@@ -17,16 +17,18 @@ const App = () => {
   useEffect(() => {
     completedHandler();
     setToLocal()
-  }, [todos, filter]);
+  }, [todos, filtered]);
 
   const completedHandler = () => {
-    switch (filter) {
+    switch (filtered) {
       case "Completed": {
-        setCompleted(todos.filter((todo) => todo.completed === true));
+        setCompleted(todos.filter((todo) =>  todo.completed === true));
       }
+      break;
       case "Uncompleted": {
         setCompleted(todos.filter((todo) => todo.completed === false));
       }
+      break;
       default:
         setCompleted(todos);
     }
@@ -36,23 +38,23 @@ const App = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   };
 
-
-  const getFromLocal = () => {
-    if (localStorage.getItem("todos") === null) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    } else {
-      let todoLocal = JSON.parse(localStorage.getItem("todos"));
-      setTodos(todoLocal);
-      console.log(todoLocal)
-    }
-  };
+  // console.log(completed)
+  // const getFromLocal = () => {
+  //   if (localStorage.getItem("todos") === null) {
+  //     localStorage.setItem("todos", JSON.stringify([]));
+  //   } else {
+  //     let todoLocal = JSON.parse(localStorage.getItem("todos"));
+  //     setTodos(todoLocal);
+  //     console.log(localStorage.getItem("todos"))
+  //   }
+  // };
 
   return (
     <div className="app">
       <header>
         <h5>Todo List</h5>
       </header>
-      <Form setFilter={setFilter} setTodos={setTodos} todos={todos} />
+      <Form setFiltered={setFiltered} setTodos={setTodos} todos={todos} />
       <TodoList completed={completed} />
     </div>
   );
