@@ -7,7 +7,7 @@ const Form = ({ setFiltered }) => {
     const [inputText, setInputtext] = useState("");
     // const [ todos, setTodos ] = useContext(TodoContext);
 
-    const { setTodos} = useContext(TodoContext)
+    const { setTodos } = useContext(TodoContext)
 
     const inputHandler = (e) => {
         setInputtext(e.target.value);
@@ -19,7 +19,11 @@ const Form = ({ setFiltered }) => {
         //     ...todos,
         //     { title: inputText, completed: false, id: Math.random() },
         // ]);
-        setTodos(inputText)
+        if (inputText.trim().length === 0) {
+            alert("Please fill the input")
+        } else {
+            setTodos(inputText)
+        }
         setInputtext("");
     };
 

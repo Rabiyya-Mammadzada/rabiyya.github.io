@@ -69,7 +69,12 @@ const Todo = ({ todo, title }) => {
         //     })
         // );
 
-        setEditedItem(e.target.value, todo.id)
+        if (e.target.value.trim().length === 0) {
+            alert("Please fill the input")
+        } else {
+            setEditedItem(e.target.value, todo.id)
+
+        }
     };
 
     return (
