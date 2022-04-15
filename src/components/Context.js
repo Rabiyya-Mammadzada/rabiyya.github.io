@@ -19,11 +19,14 @@ const reducer = (state, action) => {
         case "EDIT_ITEM":
             return {
                 todos: state.todos.map((item) => {
-                    if (item.id === action.id) {
+                    if (item.id === action.id|| action.title.trim().length>0) {
                         return {
                             ...item,
                             title: action.title,
                         };
+                    }
+                    else{
+                        alert("Please fill the input")
                     }
                     return item;
                 })
