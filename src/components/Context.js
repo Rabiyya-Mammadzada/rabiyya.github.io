@@ -1,4 +1,5 @@
 import { createContext, useState, useReducer } from "react";
+import { act } from "react-dom/test-utils";
 
 export const TodoContext = createContext();
 
@@ -8,6 +9,7 @@ const initialState = ({
 })
 
 const reducer = (state, action) => {
+    console.log(action.title)
     switch (action.type) {
         case "SET_TODOS":
             return {todos: [
@@ -19,15 +21,15 @@ const reducer = (state, action) => {
         case "EDIT_ITEM":
             return {
                 todos: state.todos.map((item) => {
-                    if (item.id === action.id && action.title.trim().length>0) {
+                    console.log(action.title)
+                    if (item.id === action.id) {
+                     
                         return {
                             ...item,
                             title: action.title,
                         };
                     }
-                    else{
-                        alert("Please fill the input")
-                    }
+                    
                     return item;
                 })
             }
@@ -35,6 +37,7 @@ const reducer = (state, action) => {
             return {
                 todos:
                     state.todos.map((item) => {
+                   
                         if (item.id === action.id) {
                             return {
                                 ...item,
@@ -61,7 +64,7 @@ export const TodoProvider = ({ children }) => {
         setCompleteToggle: (id) => { dispatch({ type: "TOGGLE_COMPLETE",  id }) }
     }
 
-    const [todos, setTodos] = useState([])
+
 
 
     return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;

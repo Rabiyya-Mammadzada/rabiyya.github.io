@@ -12,12 +12,14 @@ const Todo = ({ todo, title }) => {
     // const [todos, setTodos] = useContext(TodoContext)
     const { todos, setTodos, setCompleteToggle, setRemoveItem, setEditedItem } = useContext(TodoContext)
     const [edit, setEdit] = useState(false);
-    const input = useRef();
+    const inputRef = useRef();
+    const [empty, setEmpty] = useState(false)
+
 
 
     useEffect(() => {
         if (edit === true) {
-            input.current.focus();
+            inputRef.current.focus();
         }
     }, [edit]);
 
@@ -52,8 +54,11 @@ const Todo = ({ todo, title }) => {
     };
 
     const saveInputHandler = () => {
+        if(title.length===0){
+            return alert("Fill input");
+        }
         setEdit(false);
-        alert("Saved")
+        
     };
 
     const editedTodo = (e) => {
@@ -68,22 +73,24 @@ const Todo = ({ todo, title }) => {
         //         return item;
         //     })
         // );
+        if (e.target.value.length < 0) {
+            return;
+        }
 
-        
-            setEditedItem(e.target.value, todo.id)
+        setEditedItem(e.target.value, todo.id)
 
-        
+
     };
 
     return (
         <div className={`todo ${todo.completed ? "completed" : " "}`}>
-            <li className="todo-item">
+            <li className={`todo-item ${empty ? "red" : "   "}`}>
                 {edit ? (
                     <input
                         type="text"
                         onChange={editedTodo}
                         className="edit-input"
-                        ref={input}
+                        ref={inputRef}
                         value={title}
                     />
                 ) : (

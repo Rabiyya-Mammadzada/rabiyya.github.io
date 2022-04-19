@@ -194,3 +194,8 @@ select {
   width: 100%;
   font-size: 20px;
 }
+
+.red {
+  border: 5px solid red;
+
+}
