@@ -19,7 +19,7 @@ const reducer = (state, action) => {
         case "EDIT_ITEM":
             return {
                 todos: state.todos.map((item) => {
-                    if (item.id === action.id|| action.title.trim().length>0) {
+                    if (item.id === action.id && action.title.trim().length>0) {
                         return {
                             ...item,
                             title: action.title,
