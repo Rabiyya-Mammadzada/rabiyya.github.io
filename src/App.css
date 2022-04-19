@@ -199,3 +199,12 @@ select {
   border: 5px solid red;
 
 }
+
+.remove-btn button{
+  width: max-content;
+  height: 40px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background-color: red;
+  color: white;
+}

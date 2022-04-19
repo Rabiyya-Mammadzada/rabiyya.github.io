@@ -3,7 +3,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState, useContext } from "react";
 import { TodoContext } from "./Context";
 
-const Form = ({ setFiltered }) => {
+const Form = ({ setFiltered, setRemoveAll }) => {
     const [inputText, setInputtext] = useState("");
     // const [ todos, setTodos ] = useContext(TodoContext);
 
@@ -31,6 +31,10 @@ const Form = ({ setFiltered }) => {
         console.log("status", e.target.value)
         setFiltered(e.target.value);
     };
+    const removeAll = () => {
+        setRemoveAll()
+    
+    }
 
     return (
         <div>
@@ -57,6 +61,9 @@ const Form = ({ setFiltered }) => {
                         <option value="Completed">Completed</option>
                         <option value="Uncompleted">Uncompleted</option>
                     </select>
+                </div>
+                <div className="remove-btn">
+                    <button onClick={removeAll}>Remove all</button>
                 </div>
             </form>
         </div>

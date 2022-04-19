@@ -12,10 +12,12 @@ const reducer = (state, action) => {
     console.log(action.title)
     switch (action.type) {
         case "SET_TODOS":
-            return {todos: [
-                ...state.todos,
-                { title: action.title, completed: false, id: Math.random() },
-            ]}
+            return {
+                todos: [
+                    ...state.todos,
+                    { title: action.title, completed: false, id: Math.random() },
+                ]
+            }
         case "REMOVE_ITEM":
             return { todos: state.todos.filter((el) => el.id !== action.id) }
         case "EDIT_ITEM":
@@ -23,13 +25,13 @@ const reducer = (state, action) => {
                 todos: state.todos.map((item) => {
                     console.log(action.title)
                     if (item.id === action.id) {
-                     
+
                         return {
                             ...item,
                             title: action.title,
                         };
                     }
-                    
+
                     return item;
                 })
             }
@@ -37,7 +39,7 @@ const reducer = (state, action) => {
             return {
                 todos:
                     state.todos.map((item) => {
-                   
+
                         if (item.id === action.id) {
                             return {
                                 ...item,
@@ -47,21 +49,26 @@ const reducer = (state, action) => {
                         return item;
                     })
             }
+        case "REMOVE_ALL":
+            return {
+                todos: []
+            }
     }
 }
 
 export const TodoProvider = ({ children }) => {
-  
+
     const [state, dispatch] = useReducer(reducer, initialState)
 
     // console.log(state.todos)
 
     const value = {
         todos: state.todos,
-        setTodos: (title) => { dispatch({ type: "SET_TODOS", title}) },
+        setTodos: (title) => { dispatch({ type: "SET_TODOS", title }) },
         setRemoveItem: (id) => { dispatch({ type: "REMOVE_ITEM", id }) },
         setEditedItem: (title, id) => { dispatch({ type: "EDIT_ITEM", title, id }) },
-        setCompleteToggle: (id) => { dispatch({ type: "TOGGLE_COMPLETE",  id }) }
+        setCompleteToggle: (id) => { dispatch({ type: "TOGGLE_COMPLETE", id }) },
+        setRemoveAll: () => { dispatch({ type: "REMOVE_ALL" }) }
     }
 
 
