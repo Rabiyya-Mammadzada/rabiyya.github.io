@@ -38,14 +38,14 @@ const App = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   };
 
-  // console.log(completed)
+
   // const getFromLocal = () => {
   //   if (localStorage.getItem("todos") === null) {
   //     localStorage.setItem("todos", JSON.stringify([]));
   //   } else {
   //     let todoLocal = JSON.parse(localStorage.getItem("todos"));
   //     setTodos(todoLocal);
-  //     console.log(localStorage.getItem("todos"))
+
   //   }
   // };
 

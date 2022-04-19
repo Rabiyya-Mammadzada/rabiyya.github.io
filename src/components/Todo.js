@@ -10,10 +10,9 @@ import { TodoContext } from "./Context";
 
 const Todo = ({ todo, title }) => {
     // const [todos, setTodos] = useContext(TodoContext)
-    const { todos, setTodos, setCompleteToggle, setRemoveItem, setEditedItem } = useContext(TodoContext)
+    const {setCompleteToggle, setRemoveItem, setEditedItem } = useContext(TodoContext)
     const [edit, setEdit] = useState(false);
-    const inputRef = useRef();
-    const [empty, setEmpty] = useState(false)
+
 
 
 
@@ -84,7 +83,7 @@ const Todo = ({ todo, title }) => {
 
     return (
         <div className={`todo ${todo.completed ? "completed" : " "}`}>
-            <li className={`todo-item ${empty ? "red" : "   "}`}>
+            <li className={`todo-item }`}>
                 {edit ? (
                     <input
                         type="text"

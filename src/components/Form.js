@@ -5,7 +5,6 @@ import { TodoContext } from "./Context";
 
 const Form = ({ setFiltered, setRemoveAll }) => {
     const [inputText, setInputtext] = useState("");
-    // const [ todos, setTodos ] = useContext(TodoContext);
 
     const { setTodos } = useContext(TodoContext)
 
@@ -28,12 +27,11 @@ const Form = ({ setFiltered, setRemoveAll }) => {
     };
 
     const statusHandler = (e) => {
-        console.log("status", e.target.value)
         setFiltered(e.target.value);
     };
+
     const removeAll = () => {
         setRemoveAll()
-    
     }
 
     return (

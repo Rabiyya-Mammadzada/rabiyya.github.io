@@ -4,7 +4,7 @@ import Todo from "./Todo";
 
 const TodoList = ({completed}) => {
 //   const { todos, setTodos } = useContext(TodoContext);
-  // console.log(completed)
+
 
   return (
     <div className="todo-container">

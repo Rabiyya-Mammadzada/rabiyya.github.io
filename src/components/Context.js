@@ -9,7 +9,7 @@ const initialState = ({
 })
 
 const reducer = (state, action) => {
-    console.log(action.title)
+
     switch (action.type) {
         case "SET_TODOS":
             return {
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
         case "EDIT_ITEM":
             return {
                 todos: state.todos.map((item) => {
-                    console.log(action.title)
+   
                     if (item.id === action.id) {
 
                         return {
@@ -60,7 +60,7 @@ export const TodoProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(reducer, initialState)
 
-    // console.log(state.todos)
+
 
     const value = {
         todos: state.todos,
