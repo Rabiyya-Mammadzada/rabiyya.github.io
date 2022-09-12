@@ -61,7 +61,7 @@ const Form = ({ setFiltered, setRemoveAll }) => {
                     </select>
                 </div>
                 <div className="remove-btn">
-                    <button onClick={removeAll}>Remove all</button>
+                    <button onClick={removeAll} style={{'width' : "100px" , "borderRadius": "50px"}}>Remove all</button>
                 </div>
             </form>
         </div>
